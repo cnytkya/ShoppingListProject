@@ -1,0 +1,59 @@
+﻿@using ShoppingListProject.EntityLayer;
+@model List<Product>
+
+<div class="row">
+    <div class="col-12 grid-margin">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Son Bloglar</h4>
+                <div class="table-responsive">
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th> Başlık </th>
+                                <th> Kategori </th>
+                                <th> Son Güncelleme </th>
+                                <th> Durum</th>
+                                <th> Detaylar</th>
+
+                            </tr>
+                        </thead>
+                        @foreach (var product in Model)
+                        {
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <img src="@product.Image" class="mr-2" alt="image">@product.Name
+                                    </td>
+                                    <td>
+                                        <label class="badge badge-gradient-success">@product.Category.Name</label>
+                                    </td>
+                                    <td> @(((DateTime)product.CreateDate).ToString("dd-MMMM-yyyy")) </td>
+
+                                    <td>
+                                        @if (product.Status)
+                                        {
+                                            <span class="badge badge-gradient-success">Aktif</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge badge-gradient-danger">Pasif</span>
+                                        }
+                                    </td>
+
+                                    <td>
+                                        <a href="/Products/Details/@product.ProductId" class="btn btn-behance">Detaylar</a>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        }
+                    </table>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

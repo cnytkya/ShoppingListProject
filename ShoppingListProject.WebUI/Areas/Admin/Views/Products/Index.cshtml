@@ -1,0 +1,66 @@
+﻿@model IEnumerable<ShoppingListProject.EntityLayer.Product>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<main id="main" class="main">
+    <section class="section dashboard">
+        <div class="row">
+            <!-- Left side columns -->
+            <div class="col-lg-8">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card top-selling overflow-auto">
+                            <div class="card-body pb-0">
+                                <h5 class="card-title">Ürün Yönetimi</h5>
+                                <table class="table table-borderless">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Adı</th>
+                                            <th>İşlemler</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var category in Model)
+                                        {
+                                            <tr>
+                                                <td>@category.CategoryId</td>
+                                                <td>@category.Name</td>
+                                                <td>
+                                                    <a asp-action="Edit" asp-route-id="@category.CategoryId" class="btn btn-primary btn-sm" class="text-end ml-auto">Düzenle</a>
+                                                    <a asp-action="Delete" asp-route-id="@category.CategoryId" class="btn btn-danger btn-sm">Sil</a>
+                                                    @*@if (category.Status)
+                                                    {
+                                                        <a asp-action="Deactivate" asp-route-id="@category.CategoryId" class="btn btn-warning btn-sm">Pasif Yap</a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a asp-action="Activate" asp-route-id="@category.CategoryId" class="btn btn-success btn-sm">Aktif Yap</a>
+                                                    }*@
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                                <p class="text-end">
+                                    <a asp-action="Create" class="btn btn-primary">Yeni Ürün Ekle</a>
+                                </p>
+                            </div>
+
+                        </div>
+                    </div><!-- End Top Selling -->
+
+                </div>
+            </div><!-- End Left side columns -->
+        </div>
+    </section>
+
+</main><!-- End #main -->

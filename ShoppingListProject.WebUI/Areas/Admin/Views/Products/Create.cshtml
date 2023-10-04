@@ -1,0 +1,62 @@
+﻿@model ShoppingListProject.EntityLayer.Product
+
+@{
+    ViewData["Title"] = "Yeni Ürün Ekle";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Yeni Ürün Ekle</h1>
+
+<form asp-action="Create" method="post" enctype="multipart/form-data">
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.Name)
+        @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Name, "", new { @class = "text-danger" })
+    </div>
+    <br />
+    <div class="form-group">
+        @Html.LabelFor(x => x.Details)
+        @Html.TextAreaFor(x=>x.Details,15,3, new{ @class = "form-control"})
+        @Html.ValidationMessageFor(x=>x.Details)
+    </div>
+    <br />
+    <div class="form-group">
+        @Html.LabelFor(x => x.Image)
+        @Html.TextBoxFor(x => x.Image, new { @class = "form-control", type = "file" })
+        @Html.ValidationMessageFor(x => x.Image, "", new { @class = "text-danger" })
+    </div>
+    <br />
+   @* <div class="form-group">
+        @Html.LabelFor(x => x.Image2)
+        @Html.TextBoxFor(x => x.Image2, new { @class = "form-control", type = "file" })
+        @Html.ValidationMessageFor(x => x.Image2, "", new { @class = "text-danger" })
+    </div>
+    <br />
+    <div class="form-group">
+        @Html.LabelFor(x => x.Image3)
+        @Html.TextBoxFor(x => x.Image3, new { @class = "form-control", type = "file" })
+        @Html.ValidationMessageFor(x => x.Image3, "", new { @class = "text-danger" })
+    </div>*@
+    <br />
+    <div class="form-group">
+        @Html.LabelFor(x => x.Price)
+        @Html.TextBoxFor(x => x.Price, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Price, "", new { @class = "text-danger" })
+    </div>
+    <br />
+    <div class="form-group">
+        @Html.LabelFor(x => x.ProductCode)
+        @Html.TextBoxFor(x => x.ProductCode, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.ProductCode, "", new { @class = "text-danger" })
+    </div>
+    <br />
+    <div class="form-group">
+        @Html.LabelFor(x => x.CategoryId)
+        @Html.DropDownListFor(x => x.CategoryId, (IEnumerable<SelectListItem>)ViewBag.CategoryList, "Kategori Seçiniz", new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.CategoryId, "", new { @class = "text-danger" })
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary">Ürünü Oluştur</button>
+
+</form>

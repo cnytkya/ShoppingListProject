@@ -1,6 +1,7 @@
 ﻿using ShoppingListProject.BusinessLayer.Service;
 using ShoppingListProject.DataLayer.Abstract;
 using ShoppingListProject.EntityLayer;
+using System.Reflection.Metadata;
 
 namespace ShoppingListProject.BusinessLayer.Manager
 {
@@ -31,6 +32,21 @@ namespace ShoppingListProject.BusinessLayer.Manager
         public List<Product> GetList()
         {
             return _productRepository.GetListAll();
+        }
+
+        public List<Product> GetProductById(int id)
+        {
+            return _productRepository.GetListAll(x => x.ProductId == id);
+        }
+
+        public List<Product> GetProductListByUser(int id)
+        {
+            return _productRepository.GetListAll(x=>x.UserId ==id);
+        }
+
+        public List<Product> GetProductWithCategory()
+        {
+            return _productRepository.GetProductWithCategory();
         }
 
         public void Update(Product t)

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ShoppingListProject.Entitylayer;
 using ShoppingListProject.EntityLayer;
 
 namespace ShoppingListProject.DataLayer.Context
@@ -19,6 +20,8 @@ namespace ShoppingListProject.DataLayer.Context
 		public DbSet<Product> Products { get; set; }
 		public DbSet<ShoppingList> ShoppingLists { get; set; }
 		public DbSet<ShoppingListItem> ShoppingListItems { get; set; }
+		public DbSet<Message> Messages { get; set; }
+		public DbSet<Notification> Notifications { get; set; }
 
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         //{

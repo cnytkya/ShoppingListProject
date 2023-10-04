@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using ShoppingListProject.Entitylayer;
+using System.ComponentModel.DataAnnotations;
 
 namespace ShoppingListProject.EntityLayer
 {
@@ -11,9 +12,14 @@ namespace ShoppingListProject.EntityLayer
 		public string LastName { get; set; }
 		[Display(Name = "Email"), Required(ErrorMessage = "{0} Boş Geçilemez!")]
 		public string Email { get; set; }
-        [Display(Name = "Şifre"), Required(ErrorMessage = "{0} Boş Geçilemez!")]
+        [Display(Name = "Şifre")]
+        [Required(ErrorMessage = "{0} Boş Geçilemez!")]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
-        [Display(Name = "Şifre Tekrar"), Required(ErrorMessage = "{0} Boş Geçilemez!")]
+        [Display(Name = "Şifre Tekrarı")]
+        [Required(ErrorMessage = "{0} Boş Geçilemez!")]
+        [DataType(DataType.Password)]
+        [Compare("Password", ErrorMessage = "Şifreler eşleşmiyor.")]
         public string ConfirmPassword { get; set; }
 		[Display(Name = "Aktif?")]
 		public bool IsActive { get; set; }
@@ -31,6 +37,8 @@ namespace ShoppingListProject.EntityLayer
 		// Navigation Property
 		public List<ShoppingList> ShoppingLists { get; set; }
 
-	}
+        //public virtual ICollection<Message> Sender { get; set; }
+        //public virtual ICollection<Message> Receiver { get; set; }
+    }
 }
 

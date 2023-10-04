@@ -1,9 +1,11 @@
 ﻿@model ShoppingListProject.EntityLayer.User
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Kayıt Sayfası";
     Layout = "~/Views/Shared/UserLayout.cshtml";
 }
+<br />
+<br />
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="~/lib/jquery/dist/jquery.js"></script>
 <section class="main-content-w3layouts-agileits">
@@ -16,53 +18,48 @@
                     <div class="form-row">
                         <div class="col-md-6 mb-3">
                             <label for="validationCustom01">Adınız</label>
-                            @Html.TextBoxFor(x=>x.FirstName, new{@class = "form-control"})
-                            @Html.ValidationMessageFor(x=>x.FirstName,"", new{@class = "text-danger"})
-                            @* <input type="text" class="form-control" id="validationDefault01" name="WriterName" placeholder="" required="">*@
+                            @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control", id = "validationCustom01" })
+                            @Html.ValidationMessageFor(x => x.FirstName, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="validationCustom01">Soyadınız</label>
-                            @Html.TextBoxFor(x=>x.LastName, new{@class = "form-control"})
-                            @Html.ValidationMessageFor(x=>x.LastName,"", new{@class = "text-danger"})
-                            @* <input type="text" class="form-control" id="validationDefault01" name="WriterName" placeholder="" required="">*@
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="validationCustom02">Mail Adresi</label>
-                            @Html.TextBoxFor(x=>x.Email, new{@class = "form-control"})
-                            @Html.ValidationMessageFor(x=>x.Email,"", new{@class = "text-danger"})
-                            @*<input type="email" class="form-control" id="validationDefault02" placeholder="" required="">*@
+                            <label for="validationCustom02">Soyadınız</label>
+                            @Html.TextBoxFor(x => x.LastName, new { @class = "form-control", id = "validationCustom02" })
+                            @Html.ValidationMessageFor(x => x.LastName, "", new { @class = "text-danger" })
                         </div>
                     </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="exampleInputPassword1 mb-2">Şifre</label>
-                            @Html.TextBoxFor(x=>x.Password, new{@class = "form-control"})
-                            @Html.ValidationMessageFor(x=>x.Password,"", new{@class = "text-danger"})
-                            @*<input type="password" class="form-control" id="password1" name="WriterPassword" placeholder="şifre" required="">*@
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="exampleInputPassword2 mb-2">Şifre Tekrar</label>
-                            @Html.PasswordFor(x => x.ConfirmPassword, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(x => x.ConfirmPassword, "", new { @class = "text-danger" })
-                        </div>
-
-
+                    <div class="form-group">
+                        <label for="validationCustomEmail">E-posta Adresi</label>
+                        @Html.TextBoxFor(x => x.Email, new { @class = "form-control", id = "validationCustomEmail" })
+                        @Html.ValidationMessageFor(x => x.Email, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1 mb-2">Şifre</label>
+                        @Html.PasswordFor(x => x.Password, new { @class = "form-control", id = "password1" })
+                        @Html.ValidationMessageFor(x => x.Password, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword2 mb-2">Şifre Tekrar</label>
+                        @Html.PasswordFor(x => x.ConfirmPassword, new { @class = "form-control", id = "password2" })
+                        @Html.ValidationMessageFor(x => x.ConfirmPassword, "", new { @class = "text-danger" })
                     </div>
                     <button type="submit" class="btn btn-primary submit mb-4">Kayıt Ol</button>
-                    <p>
-                        <a href="#" id="btn1">Tüm şartları okudum, kabul ediyorum.</a>
-                    </p>
-                }
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" id="btn1" required>
+                        <p>
+                            <a href="#" type="checkbox" id="btn1">Tüm şartları okudum, kabul ediyorum.</a>
+                        </p>
+                    </div>
 
+                }
             </div>
         </div>
     </div>
-    <br />
-    <script>
-        $('#btn1').click(function () {
-            swal("Kayıt Olma Şartları",
-                "Sitemizde verdiğiniz mail adresi üzerinden bilgi ve haber e-postaları spam ölçüsüne varmadan gönderilmeye devam edilecektir.Eğer e-posta bülteninden çıkmak isterseniz mail ileti dizisini durdurabilirsiniz. Şifre ve mail adresleriniz şifrelenmiş formatta erhangi bir kullanıcıın görmeyeceği şekilde veri tabanında saklanmaktadır");
-        });
-    </script>
 </section>
 
+<script>
+    $('#btn1').click(function () {
+        swal("Kayıt Olma Şartları",
+            "Sitemizde verdiğiniz mail adresi üzerinden bilgi ve haber e-postaları spam ölçüsüne varmadan gönderilmeye devam edilecektir.Eğer e-posta bülteninden çıkmak isterseniz mail ileti dizisini durdurabilirsiniz. Şifre ve mail adresleriniz şifrelenmiş formatta erhangi bir kullanıcı tarafından görüntülenmeyecektir."
+        );
+    });
+</script>

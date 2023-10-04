@@ -10,7 +10,8 @@ namespace ShoppingListProject.EntityLayer
 
 		[Display(Name = "Eklenme Tarihi"), ScaffoldColumn(false)]
 		public DateTime? CreateDate { get; set; } = DateTime.Now;
-		public ICollection<Product> Products { get; set; } // 1 kategorinin 1 den çok ürünü olabilir (Bire çok ilişki)
+        public bool Status { get; set; }
+        public ICollection<Product> Products { get; set; } // 1 kategorinin 1 den çok ürünü olabilir (Bire çok ilişki)
 														  
 	}
 }

@@ -11,9 +11,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-//builder.Services.AddDbContext<AppDbContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<AppDbContext>(/*opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))*/);
 //builder.Services.AddScoped<IProductRepository, ProductRepository>(); // Örnek bir ekleme, gerçek implementasyonunuzu kullanýn.
 //builder.Services.AddScoped<IUserRepository, UserRepository>();
+
 
 
 var app = builder.Build();
@@ -34,7 +35,14 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapControllerRoute(
+            name: "admin",
+            pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+          );
+
+app.MapControllerRoute(
+
     name: "default",
     pattern: "{controller=Products}/{action=Index}/{id?}");
+
 
 app.Run();

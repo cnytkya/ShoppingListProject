@@ -15,7 +15,8 @@ namespace ShoppingListProject.DataLayer.Concrete
 
         public T GetById(int id)
         {
-            throw new NotImplementedException();
+            using var c = new AppDbContext();
+            return c.Set<T>().Find(id);
         }
 
         public List<T> GetListAll()
@@ -26,7 +27,9 @@ namespace ShoppingListProject.DataLayer.Concrete
 
         public List<T> GetListAll(Expression<Func<T, bool>> filter)
         {
-            throw new NotImplementedException();
+
+            using var c = new AppDbContext();
+            return c.Set<T>().Where(filter).ToList();
         }
 
         public void Insert(T item)
