@@ -35,7 +35,7 @@ namespace ShoppingListProject.DataLayer.Context
         //protected override void OnModelCreating(ModelBuilder modelBuilder)
         //{
         //    // FluentAPI : Data annotations taki tablo ve property özelliklerini yapılandırabileceğimiz bir diğer yöntemdir.
-        //    modelBuilder.Entity<User>().Property(a => a.FirstName) // Entitilerimizden appuser ın propertylerinden Name alanı için 
+        //    modelBuilder.Entity<User>().Property(a => a.FirstName) // Entitilerimizden user ın propertylerinden Name alanı için 
         //        .IsRequired() // Bu property i zorunlu alan yap
         //        .HasColumnType("varchar(50)") // Name alanının sql deki kolon tipi varchar(50) olsun
         //        .HasMaxLength(50) // Kolon karakter uzuluğu

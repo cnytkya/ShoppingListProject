@@ -37,20 +37,6 @@ namespace ShoppingListProject.WebUI.Areas.Admin.Controllers
                 return View();
             }
 
-
-            //AppDbContext dbContext = new AppDbContext();
-            //var data = dbContext.Writers.FirstOrDefault(x=>x.WriterMail == writer.WriterMail && x.WriterPassword ==  writer.WriterPassword);
-
-            //if (data != null)
-            //{
-            //    HttpContext.Session.SetString("username", writer.WriterMail);
-            //    return RedirectToAction("Index", "Writer");
-            //}
-            //else
-            //{
-            //    return View();
-            //}
-
         }
 
         [Route("Admin/Logout")]
