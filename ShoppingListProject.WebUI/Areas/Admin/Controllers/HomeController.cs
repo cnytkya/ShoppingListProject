@@ -13,8 +13,14 @@ namespace ShoppingListProject.WebUI.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
-            List<Product> products = pm.GetList();
-            return View(products);
+            AppDbContext dbContext = new AppDbContext();
+            ViewBag.v1 = dbContext.Products.Count().ToString();
+            //ViewBag.v2 = dbContext.Products.Where(x => x.UserId == 1).Count();
+            ViewBag.v3 = dbContext.Categories.Count().ToString();
+            return View();
+            //List<Product> products = pm.GetList();
+            //return View(products);
+
         }
     }
 }

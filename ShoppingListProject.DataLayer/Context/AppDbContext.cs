@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ShoppingListProject.Entitylayer;
 using ShoppingListProject.EntityLayer;
+using System.Reflection;
 
 namespace ShoppingListProject.DataLayer.Context
 {
@@ -30,6 +31,40 @@ namespace ShoppingListProject.DataLayer.Context
         //        optionsBuilder.UseSqlServer("server=(localdb)\\MSSQLLocalDB;Database= ShoppingListProjectDb;Trusted_Connection=True;TrustServerCertificate=True");
         //    }
         //}
+
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    // FluentAPI : Data annotations taki tablo ve property özelliklerini yapılandırabileceğimiz bir diğer yöntemdir.
+        //    modelBuilder.Entity<User>().Property(a => a.FirstName) // Entitilerimizden appuser ın propertylerinden Name alanı için 
+        //        .IsRequired() // Bu property i zorunlu alan yap
+        //        .HasColumnType("varchar(50)") // Name alanının sql deki kolon tipi varchar(50) olsun
+        //        .HasMaxLength(50) // Kolon karakter uzuluğu
+        //        ;
+        //    modelBuilder.Entity<User>().Property(s => s.FirstName).IsRequired().HasColumnType("nvarchar(50)").HasMaxLength(50);
+        //    modelBuilder.Entity<User>().Property(s => s.LastName).IsRequired().HasColumnType("nvarchar(50)").HasMaxLength(50);
+        //    modelBuilder.Entity<User>().Property(s => s.Email).IsRequired().HasColumnType("nvarchar(50)");
+        //    //modelBuilder.Entity<User>().Property(un => un.Username).HasColumnType("nvarchar(50)");
+        //    modelBuilder.Entity<User>().Property(p => p.Password).HasColumnType("nvarchar(50)").HasMaxLength(50).IsRequired();
+        //    // FluentAPI ile veritabanı oluştuktan sonra ilk kaydı ekleme
+        //    modelBuilder.Entity<User>().HasData(
+        //        new User
+        //        {
+        //            UserId = 1,
+        //            FirstName = "Admin",
+        //            Password = "123",
+        //            Email = "admin@gmail.com",
+        //            IsActive = true,
+        //            IsAdmin = true,
+        //            //Name = "Admin",
+        //            //Surname = "Administrator"
+        //        });
+            
+
+        //    modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly()); // Otomatik olarak projedeki tüm configurationları ekliyor.
+
+        //    base.OnModelCreating(modelBuilder);
+        //}
+
 
     }
 }

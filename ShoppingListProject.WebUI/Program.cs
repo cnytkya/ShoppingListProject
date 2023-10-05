@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using ShoppingListProject.BusinessLayer;
 using ShoppingListProject.BusinessLayer.Manager;
@@ -15,7 +16,22 @@ builder.Services.AddDbContext<AppDbContext>(/*opt => opt.UseSqlServer(builder.Co
 //builder.Services.AddScoped<IProductRepository, ProductRepository>(); // Örnek bir ekleme, gerçek implementasyonunuzu kullanýn.
 //builder.Services.AddScoped<IUserRepository, UserRepository>();
 
-
+// Oturum açma ayarlarý:
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(x =>
+{
+    x.LoginPath = "/Admin/Login";
+    x.LogoutPath = "/Admin/Logout";
+    x.AccessDeniedPath = "/AccessDenied";
+    x.Cookie.Name = "Admin";
+    x.Cookie.MaxAge = TimeSpan.FromDays(1); // Cookie süresi 1 gün belirledik
+    x.Cookie.IsEssential = true;
+});
+// Yetkilendirme ayarlarý:
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminPolicy", policy => policy.RequireClaim("Role", "Admin"));
+    options.AddPolicy("UserPolicy", policy => policy.RequireClaim("Role", "User"));
+});
 
 var app = builder.Build();
 
@@ -33,6 +49,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+app.UseAuthentication();
 
 app.MapControllerRoute(
             name: "admin",

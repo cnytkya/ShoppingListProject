@@ -8,9 +8,11 @@ using ShoppingListProject.EntityLayer;
 using System.Configuration;
 using System.Reflection.Metadata;
 using ShoppingListProject.DataLayer.Context;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ShoppingListProject.WebUI.Areas.Admin.Controllers
 {
+    //[Authorize]
     [Area("Admin")]
     public class ProductsController : Controller
     {
