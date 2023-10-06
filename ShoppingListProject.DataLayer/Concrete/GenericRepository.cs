@@ -41,7 +41,9 @@ namespace ShoppingListProject.DataLayer.Concrete
 
         public void Update(T item)
         {
-            throw new NotImplementedException();
+            using var c = new AppDbContext();
+            c.Update(item);
+            c.SaveChanges();
         }
     }
 }
