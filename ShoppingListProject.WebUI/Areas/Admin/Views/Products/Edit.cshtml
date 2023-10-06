@@ -1,0 +1,60 @@
+﻿@model ShoppingListProject.EntityLayer.Product
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Ürün Düzenle</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <input type="hidden" asp-for="ProductId" />
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Details" class="control-label"></label>
+                <textarea asp-for="Details" class="form-control" rows="5"></textarea>
+                <span asp-validation-for="Details" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ProductCode" class="control-label"></label>
+                <input asp-for="ProductCode" class="form-control" />
+                <span asp-validation-for="ProductCode" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CategoryId" class="control-label"></label>
+                <select asp-for="CategoryId" asp-items="@ViewBag.CategoryList" class="form-control"></select>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Image" class="control-label"></label>
+                <input asp-for="Image" class="form-control" />
+                <span asp-validation-for="Image" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
