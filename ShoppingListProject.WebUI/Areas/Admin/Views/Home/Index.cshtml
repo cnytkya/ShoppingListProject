@@ -39,8 +39,8 @@
             </div>
         </div>
     </div>
-    @await Component.InvokeAsync("ListProductOnDashboard")
-    @await Component.InvokeAsync("CategoryList")
+    @*@await Component.InvokeAsync("ListProductOnDashboard")
+    @await Component.InvokeAsync("CategoryList")*@
     <div class="pagetitle">
         <h1>Ana Sayfa</h1>
         <nav>
@@ -93,7 +93,7 @@
                                         <tbody>
                                             <tr>
                                                 <td scope="row"><a href="#"><img src="@item.Image" alt=""></a></td>
-                                                <td><a href="" class="text-primary fw-bold">@item.Name</a></td>
+                                                <td><a href="/Products/Details/@item.ProductId" class="text-primary fw-bold">@item.Name</a></td>
                                                 <td>@item.Price</td>
                                                 <td>@item.Category</td>
                                                 <td>@item.UserId</td>

@@ -70,41 +70,61 @@ namespace ShoppingListProject.WebUI.Areas.Admin.Controllers
             return View();
         }
 
-        //[HttpGet]
-        //public IActionResult Create()
-        //{
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            Product product = pm.GetById(id);
+            List<Category> categories = cm.GetList();
 
-        //    List<SelectListItem> categories = (from x in cm.GetList()
-        //                                       select new SelectListItem
-        //                                       {
-        //                                           Text = x.Name,
-        //                                           Value = x.CategoryId.ToString()
-        //                                       }).ToList();
-        //    ViewBag.cv = categories;
-        //    return View();
-        //}
+            if (product == null)
+            {
+                return NotFound();
+            }
 
-        //[HttpPost]
-        //public IActionResult Create(Product product)
-        //{
-        //    ProductValidator pv = new ProductValidator();
-        //    ValidationResult validationResult = pv.Validate(product);
-        //    if (validationResult.IsValid)
-        //    {
-        //        //product.Status = true;
-        //        product.CreateDate = DateTime.Parse(DateTime.Now.ToShortDateString());
-        //        pm.Add(product);
-        //        return RedirectToAction("Index", "Home");
-        //    }
-        //    else
-        //    {
-        //        foreach (var item in validationResult.Errors)
-        //        {
-        //            ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
-        //        }
-        //    }
-        //    return View();
-        //}
+            List<SelectListItem> categoryItems = categories
+                .Select(x => new SelectListItem
+                {
+                    Text = x.Name,
+                    Value = x.CategoryId.ToString(),
+                    Selected = x.CategoryId == product.CategoryId // Kategoriyi seçili olarak işaretle
+                })
+                .ToList();
+
+            ViewBag.CategoryList = categoryItems;
+
+            return View(product);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Product product)
+        {
+            ProductValidator pv = new ProductValidator();
+            ValidationResult validationResult = pv.Validate(product);
+
+            if (validationResult.IsValid)
+            {
+                if (string.IsNullOrEmpty(product.Image))
+                {
+                    product.Image = "default.jpg";
+                }
+
+                product.CreateDate = DateTime.Now;
+
+                pm.Update(product);
+
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                foreach (var item in validationResult.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+            }
+
+            return View(product);
+        }
+
 
     }
 }
